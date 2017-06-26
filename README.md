@@ -1,6 +1,6 @@
 # ASCII-Shooting-Game
 
-The Enhanced Version should have better performance and be more playable in general.
+# The Enhanced Version should have better performance and be more playable in general.
 
 The critically acclaimed and award winning "text based game" from HackMHS 2.
 
