@@ -1,4 +1,4 @@
-package stealth;
+package killfestcode.stealth;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,8 +1,8 @@
-package stealth;
+package defensecode.stealth;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import static stealth.Stealth.tempbullets;
+import static defensecode.stealth.Stealth.tempbullets;
 
 public class Bullet {
     public int XLOC;
@@ -22,26 +22,18 @@ public class Bullet {
         YLOC = y;
         speed = s;
     }
-    public void render(Graphics2D g,int x,int y,boolean xt,boolean yt) throws InterruptedException{
+    public void render(Graphics2D g) throws InterruptedException{
         
-        x = XLOC-x+1000;
-        y = YLOC-y+500;   
-        if(xt == true){
-            x = XLOC;
-        }
-        if(yt == true){
-            y = YLOC;
-        }
-        g.drawString(bullet, x+250,  y+40);
-        if(x>= 2010|| x<-600){
-             ArrayList<Bullet> temp = Stealth.tempbullets.get("destroy");
-            temp.add(this);
-            Stealth.tempbullets.put("destroy", temp);
-        }
+       
+        g.drawString(bullet, XLOC,  YLOC);
     }
     public boolean update(){
         setXLOC(getXLOC()+speed);
-        
+        if(getXLOC() >= 2010|| getXLOC() < 0){
+            ArrayList<Bullet> temp = Stealth.tempbullets.get("destroy");
+            temp.add(this);
+            Stealth.tempbullets.put("destroy", temp);
+        }
         return true;
             
         
@@ -82,11 +74,11 @@ public class Bullet {
             
             temp.add(this);
             Stealth.tempbullets.put("destroy", temp);
-            p.health = p.health - 1;
+           
         }
         return hit;
     }
-    public boolean collidesWith(Player p)
+        public boolean collidesWith(Player p)
     {
         int [] a = p.getHITBOX();
         boolean hit = (this. XLOC > a[0]) && (this. XLOC < a[1]) && (this. YLOC > a[2]) && (this. YLOC < a[3]);
@@ -96,7 +88,7 @@ public class Bullet {
             
             temp.add(this);
             Stealth.tempbullets.put("destroy", temp);
-            p.health = p.health - 3;
+           
         }
         return hit;
     }

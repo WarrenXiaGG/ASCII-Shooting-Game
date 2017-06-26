@@ -1,4 +1,4 @@
-package stealth;
+package killfestcode.stealth;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

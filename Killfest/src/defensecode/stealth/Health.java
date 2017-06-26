@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package stealth;
+package defensecode.stealth;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -22,8 +21,8 @@ public class Health {
     public int XLOC, YLOC;
 
     public Health() {
-        this.XLOC = (int) (Math.random() *2700);
-        this.YLOC = (int) (Math.random() *1700);
+        this.XLOC = (int) (Math.random() *1500);
+        this.YLOC = (int) (Math.random() *500);
     }
     final String[] healthbox = {
         "--------------",
@@ -36,31 +35,21 @@ public class Health {
     public boolean collidesWith(Player p)
     {
         int [] a = p.getHITBOX();
-        boolean hit = (this. XLOC -250> a[0]) && (this. XLOC-250 < a[1]) && (this. YLOC > a[2]) && (this. YLOC < a[3]);
+        boolean hit = (this. XLOC > a[0]) && (this. XLOC < a[1]) && (this. YLOC > a[2]) && (this. YLOC < a[3]);
         if(hit)
         {
             Stealth.first.health = 100;
+            System.out.println("FULL HEALTH");
         }
         return hit;
     }
-    public void render(Graphics2D g,int x,int y,boolean tx,boolean ty)
+    public void render(Graphics2D g)
     {
-        g.setColor(Color.red);
-         x = XLOC-x +1000;
-        y = YLOC-y +500;
-    
-       if(tx == true){
-            x = XLOC;
-        }
-        if(ty == true){
-            y = YLOC;
-        }
         for(int i = 0; i < healthbox.length; i++)
         {
-            g.drawString(healthbox[i], x,  y + (i * 13));
+            g.drawString(healthbox[i], XLOC,  YLOC + (i * 13));
         }
     }
     
 
 }
-
