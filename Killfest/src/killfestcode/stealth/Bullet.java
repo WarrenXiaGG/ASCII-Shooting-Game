@@ -79,10 +79,7 @@ public class Bullet {
         boolean hit = (this. XLOC > a[0]) && (this. XLOC < a[1]) && (this. YLOC > a[2]) && (this. YLOC < a[3]);
         if(hit)
         {
-            ArrayList<Bullet> temp = Stealth.tempbullets.get("destroy");
-            
-            temp.add(this);
-            Stealth.tempbullets.put("destroy", temp);
+            tempbullets.get("destroy").add(this);
             p.health = p.health - 1;
         }
         return hit;
@@ -93,10 +90,7 @@ public class Bullet {
         boolean hit = (this. XLOC > a[0]) && (this. XLOC < a[1]) && (this. YLOC > a[2]) && (this. YLOC < a[3]);
         if(hit)
         {
-            ArrayList<Bullet> temp = Stealth.tempbullets.get("destroy");
-            
-            temp.add(this);
-            Stealth.tempbullets.put("destroy", temp);
+           tempbullets.get("destroy").add(this);
             p.health = p.health - 3;
         }
         return hit;

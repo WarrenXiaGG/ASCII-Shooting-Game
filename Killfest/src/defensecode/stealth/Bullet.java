@@ -30,9 +30,7 @@ public class Bullet {
     public boolean update(){
         setXLOC(getXLOC()+speed);
         if(getXLOC() >= 2010|| getXLOC() < 0){
-            ArrayList<Bullet> temp = Stealth.tempbullets.get("destroy");
-            temp.add(this);
-            Stealth.tempbullets.put("destroy", temp);
+            Stealth.tempbullets.get("destroy").add(this);
         }
         return true;
             
@@ -70,10 +68,8 @@ public class Bullet {
         boolean hit = (this. XLOC > a[0]) && (this. XLOC < a[1]) && (this. YLOC > a[2]) && (this. YLOC < a[3]);
         if(hit)
         {
-            ArrayList<Bullet> temp = Stealth.tempbullets.get("destroy");
-            
-            temp.add(this);
-            Stealth.tempbullets.put("destroy", temp);
+
+            Stealth.tempbullets.get("destroy").add(this);
            
         }
         return hit;
@@ -84,10 +80,7 @@ public class Bullet {
         boolean hit = (this. XLOC > a[0]) && (this. XLOC < a[1]) && (this. YLOC > a[2]) && (this. YLOC < a[3]);
         if(hit)
         {
-            ArrayList<Bullet> temp = Stealth.tempbullets.get("destroy");
-            
-            temp.add(this);
-            Stealth.tempbullets.put("destroy", temp);
+            Stealth.tempbullets.get("destroy").add(this);
            
         }
         return hit;

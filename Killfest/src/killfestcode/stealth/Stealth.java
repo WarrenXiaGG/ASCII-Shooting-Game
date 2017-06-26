@@ -65,7 +65,7 @@ public class Stealth extends JPanel {
     public void update() {
         if (first.health <= 0) {
             try {
-                Thread.sleep(1500);
+                Thread.sleep(1000);
                 f.dispose();
                 Thread.sleep(400);
                 JOptionPane.showMessageDialog(null, "Your score is " + score);
@@ -78,17 +78,17 @@ public class Stealth extends JPanel {
         }
         if (keyW) {
 
-            moveUp(-15);
+            moveUp(-10);
         }
         if (keyA) {
-            moveHorizontal(-15);
+            moveHorizontal(-10);
         }
         if (keyS) {
 
-            moveUp(15);
+            moveUp(10);
         }
         if (keyD) {
-            moveHorizontal(15);
+            moveHorizontal(10);
         }
         if (keySpace) {
             shootBullet(50);
@@ -102,32 +102,32 @@ public class Stealth extends JPanel {
                 ArrayList<Health> temp = Stealth.temphealths.get("destroy");
                 temp.add(e);
                 Stealth.temphealths.put("destroy", temp);
-            }    
-        }
-        for (Bullet e : bullets) {
-            boolean test = e.update();
-
+            }
         }
 
         for (Bullet bullet : bullets) {
-            for (Enemy enemy : enemies) {
-                if (bullet.collidesWith(enemy)) {
+            if (bullet.XLOC < -250 || bullet.XLOC > 3000) {
 
+                tempbullets.get("destroy").add(bullet);
+
+            } else {
+                boolean test = bullet.update();
+                if (bullet.collidesWith(first)) {
+
+                } else {
+                    for (Enemy enemy : enemies) {
+                        if (bullet.collidesWith(enemy)) {
+
+                        }
+                    }
                 }
-            }
-            if (bullet.collidesWith(first)) {
 
             }
 
         }
 
-        for (Bullet e : tempbullets.get("destroy")) {
-            bullets.remove(e);
-        }
-
-        for (Bullet e : tempbullets.get("make")) {
-            bullets.add(e);
-        }
+        bullets.removeAll(tempbullets.get("destroy"));
+        bullets.addAll(tempbullets.get("make"));
 
         tempbullets.put("destroy", new ArrayList<>());
         tempbullets.put("make", new ArrayList<>());
@@ -136,13 +136,9 @@ public class Stealth extends JPanel {
             e.update();
         }
 
-        for (Enemy e : tempenemies.get("destroy")) {
-
-            enemies.remove(e);
-        }
-        for (Enemy e : tempenemies.get("make")) {
-            enemies.add(e);
-        }
+        enemies.removeAll(tempenemies.get("destroy"));
+        enemies.addAll(tempenemies.get("make"));
+        
         tempenemies.put("destroy", new ArrayList<>());
         tempenemies.put("make", new ArrayList<>());
         for (Health e : temphealths.get("destroy")) {
@@ -194,7 +190,7 @@ public class Stealth extends JPanel {
         }
         g.setColor(Color.BLACK);
         first.render(g, xtemp, ytemp);
-g.setColor(Color.RED);
+        g.setColor(Color.RED);
         try {
             for (Bullet e : bullets) {
 

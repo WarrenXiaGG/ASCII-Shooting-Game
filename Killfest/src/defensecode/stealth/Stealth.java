@@ -44,10 +44,6 @@ public class Stealth extends JPanel implements KeyListener {
     public void update() {
         first.setXLOC(xoff);
         first.setYLOC(yoff);
-        for (Bullet e : bullets) {
-            boolean test = e.update();
-
-        }
         for (Health e : healths) {
             if (e.collidesWith(first)) {
                 System.out.println("collected health");
@@ -57,18 +53,17 @@ public class Stealth extends JPanel implements KeyListener {
             }
         }
         for (Bullet bullet : bullets) {
+            bullet.update();
             for (Enemy enemy : enemies) {
                 if (bullet.collidesWith(enemy)) {
-                    System.out.println("Hit!");
                     enemy.health -= 2;
                 }
                 if (bullet.collidesWith(first)) {
-                    System.out.println("Hit!");
                     first.health -= 0.5;
                 }
                 if (first.health <= 0) {
                     try {
-                        Thread.sleep(1500);
+                        Thread.sleep(1000);
                         f.dispose();
                         JOptionPane.showMessageDialog(null, "Your score is: " + score);
                         System.exit(0);
@@ -78,6 +73,7 @@ public class Stealth extends JPanel implements KeyListener {
                     }
 
                 }
+
             }
 
         }
@@ -89,18 +85,13 @@ public class Stealth extends JPanel implements KeyListener {
         for (Bullet e : tempbullets.get("make")) {
             bullets.add(e);
         }
-
+        
         tempbullets.put("destroy", new ArrayList<>());
         tempbullets.put("make", new ArrayList<>());
 
 
         for (Enemy e : enemies) {
-            e.update();
-        }
-        for (String name : tempenemies.keySet()) {
-            String key = name;
-            String value = tempenemies.get(name).toString();
-            System.out.println("enemy " + key + " " + value);
+           e.update();
         }
 
         for (Health e : temphealths.get("destroy")) {
@@ -115,12 +106,9 @@ public class Stealth extends JPanel implements KeyListener {
         temphealths.put("destroy", new ArrayList<>());
         temphealths.put("make", new ArrayList<>());
         
-        for (Enemy e : tempenemies.get("destroy")) {
-            enemies.remove(e);
-        }
-        for (Enemy e : tempenemies.get("make")) {
-            enemies.add(e);
-        }
+        enemies.removeAll(tempenemies.get("destroy"));
+        enemies.addAll(tempenemies.get("make"));
+        
         tempenemies.put("destroy", new ArrayList<>());
         tempenemies.put("make", new ArrayList<>());
     }

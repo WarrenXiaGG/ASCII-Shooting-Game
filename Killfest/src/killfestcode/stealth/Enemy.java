@@ -76,9 +76,7 @@ public class Enemy {
         if (Math.random() < 0.05) {
             if (mode == 1) {
 
-                ArrayList<Bullet> temp = Stealth.tempbullets.get("make");
-                temp.add(new Bullet(this.XLOC - 250, this.YLOC + 120, -10));
-                Stealth.tempbullets.put("make", temp);
+                Stealth.tempbullets.get("make").add(new Bullet(this.XLOC - 250, this.YLOC + 120, -10));
             } else {
                 ArrayList<Bullet> temp = Stealth.tempbullets.get("make");
                 temp.add(new Bullet(this.XLOC-250, this.YLOC, -10));

@@ -42,13 +42,15 @@ public class Player {
           g.setColor(Color.red);
           g.drawString(healths, x-40, y-40);
            g.setColor(Color.BLACK);
+          
             g.drawString("Ammo Left: "+ ammo, 0, 100);
+           
     }
     public void update(){
     if(reloading){
-    if(timer > 100){
+    if(timer > 90){
         reloading = false;
-        ammo = 50;
+        ammo = 45;
         timer = 0;
     }else{
         timer++;

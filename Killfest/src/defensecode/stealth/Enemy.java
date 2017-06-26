@@ -58,7 +58,6 @@ public Enemy(int XLOC, int YLOC) {
             Stealth.tempenemies.put("destroy", temp);
             Stealth.first.health-=20;
         }
-        System.out.println(health);
         if(health<0){
              ArrayList<Enemy> temp = Stealth.tempenemies.get("destroy");
             
@@ -67,11 +66,9 @@ public Enemy(int XLOC, int YLOC) {
             Stealth.tempenemies.put("destroy", temp);
             
         }
-        if(Math.random()<0.005)
+        if(Math.random()<0.007)
         {
-            ArrayList<Bullet> temp = Stealth.tempbullets.get("make");
-            temp.add(new Bullet(this.XLOC - 20, this.YLOC +150, -10));
-            Stealth.tempbullets.put("make", temp);
+            Stealth.tempbullets.get("make").add(new Bullet(this.XLOC - 20, this.YLOC +150, -10));
         }
             
     }
